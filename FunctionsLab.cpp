@@ -11,7 +11,16 @@ using namespace std; // making life easier so that we do not need to use std::ci
 
 
 int locateSmallest(int array[], int start, int end){
-	return -1; // fix this!
+	if (start > end) {
+        return -1;
+    }
+	int minIndex = start;
+    for (int i = start + 1; i <= end; ++i) {
+        if (array[i] < array[minIndex]) {
+            minIndex = i;
+        }
+    }
+    return minIndex;
 }
 
 //Write the function called replaceVariable in the given interval such that 
@@ -20,24 +29,24 @@ int locateSmallest(int array[], int start, int end){
 //     an int which is the starting index of search,
 //     an int which is the ending point of searchspace
 // function: Search in the array from given start to end index and replace the given target value with 1000
-void replaceVariable() {
-	return;
+void replaceVariable(int array[], int target, int start, int end) {
+    for (int i = start; i <= end; ++i) {
+        if (array[i] == target) {
+            array[i] = 1000;
+        }
+    }
 }
-
 
 
 //write a function called printArray to print out the elements of the given array
 //output: nothing
 //input: the array of integers and its size
-void printArray() {
-	return;
+void printArray(int array[], int size) {
+    for (int i = 0; i < size; ++i) {
+        cout << array[i] << " ";
+    }
+    cout << endl;
 }
-
-
-
-
-
-
 
 
 //Write a function called sumOdds in the given interval such that 
@@ -46,8 +55,33 @@ void printArray() {
 // function: Sum the odd numbers in the given interval 
 //Hint: % is used for modulo operation. 
 //     n%m gives you the remainder after dividing n to m. for example 7%3 = 1 because 7 = 3*2 + 1, then 1 is the remainder.
+int sumOdds(int array[], int start, int end) {
+    int sum = 0;
+    for (int i = start; i <= end; ++i) {
+        if (array[i] % 2 != 0) { 
+            sum += array[i];
+        }
+    }
+    return sum;
+}
 
+int main() {
+    int arr[] = {10, 50, 5, 7, 9, 2, 100, 2, 40};
+    int size = sizeof(arr) / sizeof(arr[0]);
 
-int sumOdds(int array[], int start, int end){
-	return -1;
+    int minIndex = locateSmallest(arr, 0, 5);
+    cout << "Index of the smallest element between 0 and 5: " << minIndex << endl; 
+
+    cout << "Array before replacement: ";
+    printArray(arr, size);
+    
+    replaceVariable(arr, 2, 0, size - 1);
+    
+    cout << "Array after replacing 2 with 1000: ";
+    printArray(arr, size);
+
+    int oddSum = sumOdds(arr, 0, size - 1);
+    cout << "Sum of odd numbers in the array: " << oddSum << endl; 
+
+    return 0;
 }

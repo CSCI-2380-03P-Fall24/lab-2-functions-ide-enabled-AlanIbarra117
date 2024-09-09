@@ -3,13 +3,6 @@
 using namespace std; // making life easier so that we do not need to use std::cin , std::cout, etc.
 
 
-//Write the function called locateSmallest in the given interval such that 
-// output : int: index of the smallest value in the array
-// input : an array of int, the starting index of search, the ending point of searchspace
-// function: find the location (i.e index) of the smallest value of array in the given interval
-// Note that I don't want the smallest value
-
-
 int locateSmallest(int array[], int start, int end){
 	if (start > end) {
         return -1;
@@ -64,8 +57,7 @@ int sumOdds(int array[], int start, int end) {
     }
     return sum;
 }
-
-int main() {
+int main(){  
     int arr[] = {10, 50, 5, 7, 9, 2, 100, 2, 40};
     int size = sizeof(arr) / sizeof(arr[0]);
 
